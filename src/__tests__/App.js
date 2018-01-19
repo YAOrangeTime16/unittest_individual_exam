@@ -17,12 +17,23 @@ describe('Button', ()=>{
     expect(wrapper.state().currentPage).toBe('home');
     wrapper.find('button').simulate('click');
     expect(wrapper.state().currentPage).toBe('bot');
+    wrapper.find('button').simulate('click');
+    expect(wrapper.state().currentPage).toBe('home');
   });
 
-  it('should give the button a proper title', ()=>{
+  it('should show a proper title', ()=>{
     const wrapper = mount(<App currentPage='home' />);
     expect(wrapper.text()).toContain('Talk to a real human');
-    wrapper.setState({currentPage: 'bot'});
+    wrapper.find('button').simulate('click');
     expect(wrapper.text()).toContain('Return to forum');
-  })
-})
+  });
+});
+
+describe('persona', ()=>{
+  it('should change persona', ()=>{
+    const wrapper = shallow(<App />);
+    const mockEvent = {target: {value: 'alice'}};
+    wrapper.instance().changePersona(mockEvent);
+    expect(wrapper.state().currentPersona).toBe('alice');
+  });
+});
