@@ -6,8 +6,8 @@ cache:
     - node_modules
   yarn: true
 script:
-  - npm run build
-  - npm test --coverage && type ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - yarn build
+  - yarn test --coverage && type||cat ./coverage/lcov.info | coveralls
 # deploy:
 #  provider: pages
 #  skip_cleanup: true

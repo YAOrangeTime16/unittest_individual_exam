@@ -62,3 +62,14 @@ eslint .eslintrc
 If you want `.eslintrc` to be detected by your editor you need to install plugin/extensions for your editor.
 
 * https://eslint.org/docs/user-guide/integrations
+
+### Test cases
+```javascript
+// CreateNewComments
+describe('form', ()=>{
+    it('should render the component');
+    it('should change the state');
+    it('should create a comment object, and call updateComments method with postId argument');
+    it('should make sure the state is set to "" after form is submitted');
+});
+```
