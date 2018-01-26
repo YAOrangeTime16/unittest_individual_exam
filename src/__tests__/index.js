@@ -100,14 +100,16 @@ describe('testing functions in api/index.js', ()=>{
             const stringifiedPersona = JSON.stringify(personasArray);
             expect(api.fetchPersonas()).toEqual([]);
             localStorage.setItem('personas', stringifiedPersona);
-            console.log(api.fetchPersonas())
             expect(api.fetchPersonas()).toEqual(personasArray);
         });
         
     });
 
     describe('Bot response', ()=>{
-        it('generates Random interger, and return one response based on the number');
-        //it('should return one response');
+        it.skip('returns one message object based on a number', async ()=>{
+            api.generateRandomInt = jest.fn().mockReturnValue(100);
+            const reply = await api.botReply();
+            expect(reply).toBeTruthy();
+        });
     });
 });
