@@ -42,13 +42,11 @@ describe('testing the Comments component', ()=>{
         console.log(wrapper.state().comments)
     });
 */
-
     it('should call api.removeComment function', ()=>{
         api.removeComment = jest.fn(id=>id);
         const wrapper = shallow(component);
         wrapper.instance().removeComment('mockId');
         expect(api.removeComment).toHaveBeenCalledWith('mockId');
     });
-
 });
 

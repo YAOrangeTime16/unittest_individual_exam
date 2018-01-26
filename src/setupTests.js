@@ -6,7 +6,7 @@ configure({ adapter: new Adapter() });
 let storage = {};
 const localStorageMock = {
   getItem: jest.fn(key=>storage[key]),
-  setItem: jest.fn((key, value)=> storage[key] = value),
+  setItem: jest.fn((key, value)=> storage[key] = value.toString()),
   clear: jest.fn( ()=> storage={} )
 };
 
