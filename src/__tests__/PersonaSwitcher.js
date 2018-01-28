@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import PersonaSwitcher from '../components/PersonaSwitcher';
 
 describe('testing PersonaSwitcher', ()=>{
@@ -14,6 +14,5 @@ describe('testing PersonaSwitcher', ()=>{
         const target = {target: {value: 'target value'}};
         wrapper.find('select').simulate('change', target);
         expect(wrapper.find('select').props().onChange).toHaveBeenCalledWith(target);
-  
     });
 });
