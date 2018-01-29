@@ -1,9 +1,9 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount, render, shallow } from 'enzyme';
 import Posts from '../components/Posts';
 import * as api from '../api';
 
-describe('Testing Posts component', ()=>{
+describe('Testing the Posts component', ()=>{
     const component = <Posts currentPersona='' />;
     const posts = [
         {
@@ -14,35 +14,28 @@ describe('Testing Posts component', ()=>{
             author: 'author'
         }
     ];
-    api.fetchAllPosts = jest.fn().mockReturnValue(posts);
 
-    it('renders the component with the state', ()=>{
-        const wrapper = shallow(component);
-        expect(wrapper.find('CreateNewPost')).toBeTruthy();
-        expect(wrapper.state('posts')).toEqual(posts);
+    it('renders the component', ()=>{
+        const wrapper = render(component);
+        expect(wrapper.find('div')).toBeTruthy();
     });
 
     it('renders the post list', ()=>{
         const wrapper = mount(component);
-        wrapper.setState({ posts });
-        expect(wrapper.find('article').text()).toContain('mockTitle');
-        wrapper.unmount();
+        wrapper.setState({posts});
+        expect(wrapper.find('SinglePost').text()).toContain(posts[0].title);
     });
 
-    /** This test would be unnecessary because 
-     *  it is called automarically when the component mounted.
-     * That means if you define posts it mounts automaticall */
-    it.skip('sets the posts state', ()=>{
+    it('sets the posts state when mounted', ()=>{
+        api.fetchAllPosts = jest.fn().mockReturnValue(posts);
         const wrapper = shallow(component);
-        //api.fetchAllPosts = jest.fn().mockReturnValue(posts);
-        //wrapper.instance().setPostFromLocalStorage();
         expect(wrapper.state('posts')).toEqual(posts);
     });
     
-    it('should remove a post', ()=>{
-        const wrapper = shallow(component);
+    it('should call api.remove()', ()=>{
         api.removePost = jest.fn(id => id);
-        wrapper.instance().removePost('mockId');
-        expect(api.removePost).toHaveBeenCalledWith('mockId');
+        const wrapper = shallow(component);
+        wrapper.instance().removePost(posts[0].id);
+        expect(api.removePost).toHaveBeenCalledWith(posts[0].id);
     });
 });

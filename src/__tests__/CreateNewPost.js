@@ -9,32 +9,27 @@ describe('Testing this component', ()=>{
         expect(wrapper).toBeDefined();
     });
     
-    it('should change the input value when text typed', ()=>{
+    it('should set the state of title when text typed', ()=>{
         const wrapper = shallow(component);
         const mockEvent = {target: {name: 'title', value: 'hi'}};
         wrapper.find('#title').simulate('change', mockEvent);
-        expect(wrapper.state().title).toBe('hi');
+        expect(wrapper.state().title).toBe(mockEvent.target.value);
     });
     
-    it('should change the textarea value when text typed', ()=>{
+    it('should set the state of content when text typed', ()=>{
         const wrapper = shallow(component);
         const mockEvent = {target: {name: 'content', value: 'testing textarea'}};
         wrapper.find('#content').simulate('change', mockEvent);
-        expect(wrapper.state().content).toBe('testing textarea');
+        expect(wrapper.state().content).toBe(mockEvent.target.value);
     });
 
-    it('should call updatePosts() when the form is submitted, and set the states to empty', ()=>{
+    it('set the states to empty', ()=>{
         const mockEvent = {preventDefault: jest.fn()}
         const wrapper = shallow(component);
-        const updatePosts = jest.fn();
         const state = {title: 'my title', content: 'my content'};
-
-        wrapper.setProps({updatePosts});
         wrapper.setState(state);
         expect(wrapper.state()).toEqual(state);
-        
         wrapper.find('form').simulate('submit', mockEvent);
-        expect(updatePosts).toHaveBeenCalled();
         expect(wrapper.state().title).toBe('');
     });
 });

@@ -10,7 +10,7 @@ describe('testing SinglePost Component', ()=>{
         author: 'mockPersona',
         currentPersona: 'mockPersona',
         date: 'today',
-        onClick: ()=>{}
+        onClick: jest.fn()
     };
     const component = <SinglePost {...props} />
     
@@ -19,17 +19,16 @@ describe('testing SinglePost Component', ()=>{
         expect(wrapper.text()).toContain(props.author);
     });
     
-    it('does not render x button', ()=>{
-        const currentPersona = 'anotherPersona';
+    it('does not render x button if(author != currentPersona)', ()=>{
+        const currentPersona = 'another Persona';
         const wrapper = mount(component);
         wrapper.setProps({currentPersona});
         expect(wrapper.find('button').exists()).toBeFalsy();
     });
 
     it('calls onClick with an argument when clicked', ()=>{
-        const onClick = jest.fn();
+        const { onClick } = props;
         const wrapper = shallow(component);
-        wrapper.setProps({onClick});
         wrapper.find('Button').simulate('click');
         expect(onClick).toHaveBeenCalledWith(props.id);
     });

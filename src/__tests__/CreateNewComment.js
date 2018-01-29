@@ -3,10 +3,12 @@ import { shallow, render } from 'enzyme';
 import CreateNewComment from '../components/CreateNewComment';
 
 describe('form', ()=>{
-    const component = <CreateNewComment 
-    postId=''
-    author=''
-    updateComments={jest.fn()} />;
+    const props = {
+        postId: '',
+        author: '',
+        updateComments: jest.fn()
+    };
+    const component = <CreateNewComment {...props} />;
 
     it('should renders the component', ()=>{
         const wrapper = render(component);
@@ -17,7 +19,7 @@ describe('form', ()=>{
         const wrapper = shallow(component);
         const event = {target: {name: 'comment', value: 'test value'}}
         wrapper.find('textarea').simulate('change', event);
-        expect(wrapper.state('comment')).toBe('test value');
+        expect(wrapper.state('comment')).toBe(event.target.value);
     });
 
     it('should re-set the state to empty', ()=>{
@@ -27,5 +29,4 @@ describe('form', ()=>{
         wrapper.find('form').simulate('submit', mockEvent);
         expect(wrapper.state('comment')).toHaveLength(0);
     });
-    
 });

@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallow, remder, mount } from 'enzyme';
 import * as api from '../api';
 import { storePostObject } from '../api';
 

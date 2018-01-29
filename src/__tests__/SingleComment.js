@@ -9,7 +9,7 @@ describe('testing SingleComment Component', ()=>{
         currentPersona: 'mockPersona',
         comment: 'myComment',
         date: 'today',
-        onClick: ()=>{}
+        onClick: jest.fn()
     };
     const component = <SingleComment {...props} />;
 
@@ -26,9 +26,8 @@ describe('testing SingleComment Component', ()=>{
     });
 
     it('calls onClick with an argument when clicked', ()=>{
-        const onClick = jest.fn();
+        const {onClick} = props;
         const wrapper = shallow(component);
-        wrapper.setProps({onClick});
         wrapper.find('Button').simulate('click');
         expect(onClick).toHaveBeenCalledWith(props.id);
     });
