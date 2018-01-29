@@ -25,7 +25,6 @@ describe('Testing Posts component', ()=>{
     it('renders the post list', ()=>{
         const wrapper = mount(component);
         wrapper.setState({ posts });
-        //wrapper.setProps({date: 'date', author: 'author'})
         expect(wrapper.find('article').text()).toContain('mockTitle');
         wrapper.unmount();
     });

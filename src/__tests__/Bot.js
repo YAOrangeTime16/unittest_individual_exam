@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, render, shallow } from 'enzyme';
+import { render, shallow } from 'enzyme';
 import Bot from '../components/Bot/Bot';
 import * as api from '../api';
 
@@ -26,21 +26,21 @@ describe('testing the Bot component', ()=>{
         expect(wrapper.state().messages[0].message).toBe(myMessage);
     });
 
-    it('sets the state of typing and makes sure api.botReply called', ()=>{
+    it('sets the state of typing', ()=>{
         const wrapper = shallow(component);
-        expect.assertions(2);
-        api.botReply = jest.fn(()=> new Promise(resolve=>{message: 'bot reply'}));
         wrapper.instance().sendReply();
         expect(wrapper.state('typing')).toBeTruthy();
-        expect(api.botReply).toHaveBeenCalled();
     });
 
-    it.skip('sets the state of messages', async ()=>{
-        //jest.useFakeTimers();
+    it('makes sure api.botReply called and sets the state of messages',async ()=>{
         const wrapper = shallow(component);
-        expect.assertions(1);
-        api.botReply = jest.fn(()=> new Promise(resolve=>{message:'bot reply'}));
-        expect(api.botReply()).resolves.toBeTruthy();
-        //jest.runAllTimers();
+        expect.assertions(2);
+        api.botReply = jest.fn(
+            ()=> Promise.resolve({message:'bot reply', bot: false})
+        );
+        wrapper.instance().sendReply();
+        expect(api.botReply).toHaveBeenCalledTimes(1);
+        const reply = await api.botReply();
+        expect(wrapper.state().messages[0]).toEqual(reply);
     });
 });
