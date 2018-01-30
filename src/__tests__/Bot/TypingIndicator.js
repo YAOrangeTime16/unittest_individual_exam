@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'enzyme';
-import TypingIndicator from '../components/Bot/TypingIndicator';
+import TypingIndicator from '../../components/Bot/TypingIndicator';
 
 describe('testing the TypingIndicator component', ()=>{ 
     it('renders the component when typing is true', ()=>{

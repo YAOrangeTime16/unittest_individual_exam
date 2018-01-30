@@ -1,4 +1,4 @@
-import * as api from '../api';
+import * as api from '../../api';
 import { storePostObject } from '../api';
 
 describe('testing functions in api/index.js', ()=>{

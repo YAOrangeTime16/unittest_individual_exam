@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
-import Message from '../components/Bot/Message';
+import Message from '../../components/Bot/Message';
 
 describe('testing the Message component', ()=>{
     const properties = {

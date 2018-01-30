@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
-import Bot from '../components/Bot/Bot';
-import * as api from '../api';
+import Bot from '../../components/Bot/Bot';
+import * as api from '../../api';
 
 describe('testing the Bot component', ()=>{
     const component = <Bot />;

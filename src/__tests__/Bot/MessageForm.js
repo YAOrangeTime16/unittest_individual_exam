@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, render, shallow } from 'enzyme';
-import MessageForm from '../components/Bot/MessageForm';
+import MessageForm from '../../components/Bot/MessageForm';
 
 describe('testing the MessageForm component', ()=>{
     const component = <MessageForm onSubmit={jest.fn()} />;
