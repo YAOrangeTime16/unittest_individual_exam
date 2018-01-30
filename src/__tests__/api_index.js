@@ -58,10 +58,6 @@ describe('testing functions in api/index.js', ()=>{
         const author = 'author';
 
         describe('createCommentObject & storeCommentObject', ()=>{
-            afterAll(()=>{
-                localStorage.clear();
-            });
-
             it('should create a comment object and store it', ()=>{
                 const commentObject = {...api.createCommentObject(comment, postId, author), id: 'ididid'};
                 expect(commentObject).toEqual(
@@ -85,19 +81,33 @@ describe('testing functions in api/index.js', ()=>{
 
         describe('fetchAllComments', ()=>{
             it('should fetch all comments from storage, if storage is empty it returns empty array', ()=>{
+                localStorage.clear();
                 expect(api.fetchAllCommments()).toHaveLength(0);
                 const commentObject = {comment: 'test comment'};
                 const comments = JSON.stringify(commentObject);
                 localStorage.setItem('comments', comments);
                 expect(api.fetchAllCommments()).toEqual(commentObject);
-            })
+            });
         });
         
         describe('removeComment', ()=>{
+            const comments = JSON.stringify([{id:'ID-1'}, {id: 'ID-2'}]);
+            beforeEach(()=>{
+                localStorage.setItem('comments', comments);
+                localStorage.setItem('posts', comments);
+            });
+            
+            
+            it('should keep a comment if post and comment have different IDs', ()=>{
+                api.removeComment('ID-3');
+                const storage = localStorage.getItem('comments');
+                expect(storage).toEqual(comments);
+            });
+
             it('should remove a comment and update comment storage', ()=>{
-                api.removeComment('ididid');
+                api.removeComment('ID-2');
                 const updatedStorage = localStorage.getItem('comments');
-                expect(updatedStorage).toBe('[]');
+                expect(updatedStorage).not.toContain('ID-2');
             });
         });
 
