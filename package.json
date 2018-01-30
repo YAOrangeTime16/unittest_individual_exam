@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "private": true,
   "author": "Jesper Orb <jesperorb@gmail.com> (https://jesperorb.com/)",
-  "main": "./src/index.js",
   "dependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
