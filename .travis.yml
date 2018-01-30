@@ -8,9 +8,9 @@ cache:
 script:
   - yarn build
   - yarn test --coverage && type||cat ./coverage/lcov.info | coveralls
-# deploy:
-#  provider: pages
-#  skip_cleanup: true
-#  github_token: $GITHUB_TOKEN
-#  on:
-#    branch: master
+ deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
