@@ -9,4 +9,6 @@ describe('App.js', ()=>{
         cy.get('input[value="Create"').click();
         cy.get('article').first().contains('E2E Testing Title');
     });
+
+    it('should shows delete button when the currentPersona matches to the post author');
 })

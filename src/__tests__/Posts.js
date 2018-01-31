@@ -17,7 +17,7 @@ describe('Testing the Posts component', ()=>{
 
     it('renders the component', ()=>{
         const wrapper = render(component);
-        expect(wrapper.find('div')).toBeTruthy();
+        expect(wrapper.find('div.pt-8')).toBeTruthy();
     });
 
     it('renders the post list', ()=>{
@@ -32,7 +32,7 @@ describe('Testing the Posts component', ()=>{
         expect(wrapper.state('posts')).toEqual(posts);
     });
     
-    it('should call api.remove()', ()=>{
+    it('should call api.remove() with a passed argument', ()=>{
         api.removePost = jest.fn(id => id);
         const wrapper = shallow(component);
         wrapper.instance().removePost(posts[0].id);
