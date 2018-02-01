@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`form should match its snapshot 1`] = `
+<form
+  class="container mx-auto flex flex-col p-6"
+>
+  <label
+    class="mb-2"
+    for="comment"
+  >
+    Comment
+  </label>
+  <textarea
+    class="shadow rounded border mb-2 p-2"
+    id="comment"
+    name="comment"
+  >
+    
+  </textarea>
+  <input
+    class="bg-indigo-dark hover:bg-indigo-darker text-white font-bold py-2 px-4 rounded-full"
+    type="submit"
+    value="Comment"
+  >
+    
+  </input>
+</form>
+`;
