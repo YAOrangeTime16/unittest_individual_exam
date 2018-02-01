@@ -40,7 +40,8 @@
       "src/**/*.{js,jsx}",
       "!**/src/setupTests.js",
       "!**/src/fakePosts.js",
-      "!**/src/registerServiceWorker.js"
+      "!**/src/registerServiceWorker.js",
+      "!**/src/index.js"
     ]
   },
   "homepage": "http://yaorangetime16.github.io/unittest_individual_exam"

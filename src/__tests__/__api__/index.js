@@ -37,8 +37,10 @@ describe('POST', ()=>{
     });
     
     describe('fetchAllPosts', ()=>{
-        it('should fetch posts in the local storage', ()=>{
+        it('should fetch posts in the local storage, or returns empty array when nothing in the storage', ()=>{
             expect(api.fetchAllPosts()).toHaveLength(2);
+            localStorage.clear();
+            expect(api.fetchAllPosts()).toHaveLength(0);
         });
     });
 
@@ -148,11 +150,12 @@ describe('PERSONA', ()=>{
 
 describe('BOT RESPONSE', ()=>{
     jest.useFakeTimers();
-    it('returns one message object', async ()=>{
+    it('returns one message object', ()=>{
         expect.assertions(2);
         expect(api.botReply()).resolves.toEqual(
             expect.objectContaining({
-                message: expect.any(String)
+                message: expect.any(String),
+                bot: true
             })
         );
         jest.runAllTimers();
